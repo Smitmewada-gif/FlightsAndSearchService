@@ -1,8 +1,8 @@
-# welcome to Flights service
+# Welcome to Flights service
 
 ## Project Setup
 
-- clone the project on your local
+- Clone the project on your local
 - Execute `npm install` on the same path as your root directory of the downloaded folder
 - Create a '.env' file in the root directory add the following environment variables
   - `PORT=3000`
@@ -19,4 +19,4 @@
   }
 }
 ```
-
+- Once you've added your db config as listed above, go to the src folder from your terminal and execute `npx sequelize db:create`
