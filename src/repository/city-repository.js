@@ -12,7 +12,7 @@ class CityRepository {
     }
   }
 
-  async deleteCity({cityId}){
+  async deleteCity(cityId){
     try{
       City.destroy({
         where: {id: cityId}
@@ -24,9 +24,9 @@ class CityRepository {
     }
   }
 
-  async getCity({cityId}){
+  async getCity(cityId){
     try{
-      const city = await City.findByPk({cityId});
+      const city = await City.findByPk(cityId);
       return city;
     }
     catch (error){
