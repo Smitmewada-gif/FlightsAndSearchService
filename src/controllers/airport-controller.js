@@ -14,7 +14,6 @@ const getAllAirports = async (req, res) =>{
     })
   }
   catch (error) {
-    console.log("Error in controller");
     return res.status(500).json({
       data: {},
       success: false,

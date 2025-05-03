@@ -20,6 +20,7 @@ router.delete('/airport/:id', AirportController.deleteAirport);
 router.patch('/airport/:id', AirportController.updateAirport);
 
 // flight routes
-router.post('/flights', FlightController.createFlight)
+router.post('/flights', FlightController.createFlight);
+router.get('/flights', FlightController.getAllFlights);
 
 module.exports = router;
