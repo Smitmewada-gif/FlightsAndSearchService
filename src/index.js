@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { PORT } = require('./config/serverConfig');
 const Apiroutes = require('./routes/index');
+const { where } = require("sequelize");
+const {City} = require('./models/index');
 
 const setUpAndStartSever = async () => {
 
@@ -13,7 +15,7 @@ const setUpAndStartSever = async () => {
   
   app.use('/api', Apiroutes);
 
-  app.listen(PORT, ()=>{
+  app.listen(PORT, async ()=>{
     console.log(`Server started at port ${PORT}`);
   });
 
