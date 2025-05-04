@@ -34,7 +34,7 @@ const getAirport = async (req, res) =>{
     });
   }
   catch (error) {
-    return res.status(200).json({
+    return res.status(500).json({
       data: {},
       success: false,
       message: "Not able to fetch airport",
@@ -45,7 +45,7 @@ const getAirport = async (req, res) =>{
 
 const createAirport = async (req, res) =>{
   try {
-    const airport = await airportService.createAirport(req.body);
+    const airport = await airportService.create(req.body);
     return res.status(200).json({
       data: airport,
       success: true,
@@ -54,7 +54,7 @@ const createAirport = async (req, res) =>{
     });
   }
   catch (error) {
-    return res.status(200).json({
+    return res.status(500).json({
       data: {},
       success: false,
       message: "Not able to create airport",
@@ -74,7 +74,7 @@ const deleteAirport = async (req, res) =>{
     });
   }
   catch (error) {
-    return res.status(200).json({
+    return res.status(500).json({
       data: {},
       success: false,
       message: "Not able to detete airport",
@@ -94,7 +94,7 @@ const updateAirport = async (req, res) =>{
     });
   }
   catch (error) {
-    return res.status(200).json({
+    return res.status(500).json({
       data: {},
       success: false,
       message: "Not able to update airport",

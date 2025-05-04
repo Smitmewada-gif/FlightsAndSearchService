@@ -3,7 +3,17 @@ const flightService = new FlightService();
 
 const createFlight = async (req , res) =>{
   try{
-    const flight = await flightService.createFlight(req.body);
+    // if user sends some extra keys then we dont take it in data
+    const flightRequestsData = {
+      flightNumber: req.body.flightNumber,
+      airplaneId: req.body.airplaneId,
+      departureAirportId: req.body.departureAirportId,
+      arrivalAirportId: req.body.arrivalAirportId,
+      arrivalTime: req.body.arrivalTime,
+      departureTime: req.body.departureTime,
+      price: req.body.price,
+    };
+    const flight = await flightService.createFlight(flightRequestsData);
     return res.status(201).json({
       data: flight,
       success: true,
