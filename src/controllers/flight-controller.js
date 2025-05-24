@@ -1,5 +1,6 @@
 const {FlightService} = require("../services/index");
 const flightService = new FlightService();
+const {SuccessCodes} = require("../utils/error-code");
 
 const createFlight = async (req , res) =>{
   try{
@@ -14,7 +15,7 @@ const createFlight = async (req , res) =>{
       price: req.body.price,
     };
     const flight = await flightService.createFlight(flightRequestsData);
-    return res.status(201).json({
+    return res.status(SuccessCodes.CREATED).json({
       data: flight,
       success: true,
       message: "Successfully created a flight",
@@ -34,7 +35,7 @@ const createFlight = async (req , res) =>{
 const getAllFlights = async (req , res) =>{
   try{
     const flights = await flightService.getAllFlights(req.query);
-    return res.status(201).json({
+    return res.status(SuccessCodes.OK).json({
       data: flights,
       success: true,
       message: "Successfully fetched flights",
@@ -51,4 +52,44 @@ const getAllFlights = async (req , res) =>{
   }
 }
 
-module.exports = {createFlight, getAllFlights};
+const getFlight = async (req , res) =>{
+  try{
+    const flight = await flightService.getFlight(req.params.id);
+    return res.status(SuccessCodes.OK).json({
+      data: flight,
+      success: true,
+      message: "Successfully fetched the flight",
+      error: {}
+    });
+  }
+  catch (error) {
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Not able to fetch flight",
+      error: error
+    });
+  }
+}
+
+const updateFlight = async (req , res) =>{
+  try{
+    const response = await flightService.updateFlight(req.params.id, req.body);
+    return res.status(SuccessCodes.OK).json({
+      data: response,
+      success: true,
+      message: "Successfully updated the flight",
+      error: {}
+    });
+  }
+  catch (error) {
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Not able to update the flight",
+      error: error
+    });
+  }
+}
+
+module.exports = {createFlight, getAllFlights, getFlight, updateFlight};
